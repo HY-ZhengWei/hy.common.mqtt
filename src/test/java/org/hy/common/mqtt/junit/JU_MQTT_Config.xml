@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+
+    <import name="xobjects"        class="java.util.ArrayList" />
+    <import name="broker"          class="org.hy.common.mqtt.broker.BrokerConfig" />
+    <import name="xbroker"          class="org.hy.common.mqtt.broker.XBroker" />
+    
+    
+    
+    <xobjects>
+    
+        <broker id="MQTT_Broker_V311">
+            <protocol>tcp://</protocol>
+            <host>10.1.20.105</host>
+            <port>7788</port>
+            <mqttVersion>3.1.1</mqttVersion>
+            <lastWillTopic>hy/mqtt/will</lastWillTopic>
+            <lastWillPayload>offline</lastWillPayload>
+            <onLinePayload>online</onLinePayload>
+            <exitPayload>exit</exitPayload>
+        </broker>
+        
+        <broker id="MQTT_Broker_V5">
+            <protocol>tcp://</protocol>
+            <host>10.1.20.105</host>
+            <port>7788</port>
+            <mqttVersion>5.0</mqttVersion>
+            <lastWillTopic>hy/mqtt/will</lastWillTopic>
+            <lastWillPayload>offline</lastWillPayload>
+            <onLinePayload>online</onLinePayload>
+            <exitPayload>exit</exitPayload>
+        </broker>
+        
+        <xbroker id="XBroker_V311">
+            <constructor>
+                <broker ref="MQTT_Broker_V311" />
+            </constructor>
+        </xbroker>
+        
+        <xbroker id="XBroker_V5">
+            <constructor>
+                <broker ref="MQTT_Broker_V5" />
+            </constructor>
+        </xbroker>
+        
+    </xobjects>
+
+</config>

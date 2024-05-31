@@ -1,0 +1,6 @@
+Manifest-Version: 1.0.0
+Created-By: HY.ZhengWei@qq.com  2024-01
+Specification-Version: 1.0.0  2024-05-31
+SourceCode: https://github.com/HY-ZhengWei/hy.common.mqtt
+SourceCodeChina: https://gitee.com/HY-ZhengWei/hy.common.mqtt
+Build-JDK: 17
