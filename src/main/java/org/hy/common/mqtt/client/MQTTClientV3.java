@@ -197,6 +197,16 @@ public class MQTTClientV3 extends MQTTClientAbstract implements IMQTTClient ,Ser
                                       ,Help.NVL(this.getLastWillRetain() ,true));
             }
             
+            if ( this.getUserName() != null )
+            {
+                v_MQTTConnOpts.setUserName(this.getUserName());
+            }
+            
+            if ( this.getUserPassword() != null )
+            {
+                v_MQTTConnOpts.setPassword(this.getUserPassword().toCharArray());
+            }
+            
             this.mqttClient.connect(v_MQTTConnOpts);
             
             // 首次连接发送上线消息

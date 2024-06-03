@@ -34,6 +34,12 @@ public abstract class MQTTClientAbstract implements IMQTTClient ,Serializable
     /** 访问端口（只读） */
     protected Integer port;
     
+    /** 连接用户名称 */
+    protected String  userName;
+    
+    /** 连接访问密码 */
+    protected String  userPassword;
+    
     /** 协议类型（只读） */
     protected String  protocol;
     
@@ -566,6 +572,50 @@ public abstract class MQTTClientAbstract implements IMQTTClient ,Serializable
     {
         this.exitPayload = i_ExitPayload;
         return this;
+    }
+
+    
+    
+    /**
+     * 获取：连接用户名称
+     */
+    public String getUserName()
+    {
+        return userName;
+    }
+
+
+    
+    /**
+     * 设置：连接用户名称
+     * 
+     * @param i_UserName 连接用户名称
+     */
+    public void setUserName(String i_UserName)
+    {
+        this.userName = i_UserName;
+    }
+
+    
+    
+    /**
+     * 获取：连接访问密码
+     */
+    public String getUserPassword()
+    {
+        return userPassword;
+    }
+
+    
+    
+    /**
+     * 设置：连接访问密码
+     * 
+     * @param i_UserPassword 连接访问密码
+     */
+    public void setUserPassword(String i_UserPassword)
+    {
+        this.userPassword = i_UserPassword;
     }
     
 }

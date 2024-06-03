@@ -196,6 +196,16 @@ public class MQTTClientV5 extends MQTTClientAbstract implements IMQTTClient ,Ser
                 v_MQTTConnOpts.setWill(this.getLastWillTopic() ,v_Will);
             }
             
+            if ( this.getUserName() != null )
+            {
+                v_MQTTConnOpts.setUserName(this.getUserName());
+            }
+            
+            if ( this.getUserPassword() != null )
+            {
+                v_MQTTConnOpts.setPassword(this.getUserPassword().getBytes());
+            }
+            
             this.mqttClient.connect(v_MQTTConnOpts);
             return true;
         }

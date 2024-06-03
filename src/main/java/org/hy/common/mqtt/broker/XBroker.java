@@ -73,6 +73,8 @@ public class XBroker implements XJavaID ,Serializable
         this.mqttClient.setLastWillRetain( Help.NVL(i_Broker.getLastWillRetain()  ,1) >= 1);
         this.mqttClient.setOnLinePayload(           i_Broker.getOnLinePayload());
         this.mqttClient.setExitPayload(             i_Broker.getExitPayload());
+        this.mqttClient.setUserName(       Help.NVL(i_Broker.getUserName()     ,null));
+        this.mqttClient.setUserPassword(   Help.NVL(i_Broker.getUserPassword() ,null));
     }
     
     

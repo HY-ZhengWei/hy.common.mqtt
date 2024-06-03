@@ -399,4 +399,36 @@ public interface IMQTTClient
      */
     public IMQTTClient setExitPayload(String i_ExitPayload);
     
+    
+    
+    /**
+     * 获取：连接用户名称
+     */
+    public String getUserName();
+
+    
+    
+    /**
+     * 设置：连接用户名称
+     * 
+     * @param i_UserName 连接用户名称
+     */
+    public void setUserName(String i_UserName);
+
+    
+    
+    /**
+     * 获取：连接访问密码
+     */
+    public String getUserPassword();
+    
+    
+    
+    /**
+     * 设置：连接访问密码
+     * 
+     * @param i_UserPassword 连接访问密码
+     */
+    public void setUserPassword(String i_UserPassword);
+    
 }
