@@ -15,6 +15,8 @@ import org.eclipse.paho.mqttv5.common.MqttSecurityException;
 import org.eclipse.paho.mqttv5.common.MqttSubscription;
 import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
 import org.hy.common.Help;
+import org.hy.common.StringHelp;
+import org.hy.common.mqtt.client.enums.MessageFormat;
 import org.hy.common.mqtt.client.subscribe.IMqttMessageListener;
 import org.hy.common.mqtt.client.subscribe.MqttMessageListenerV5;
 import org.hy.common.mqtt.client.subscribe.MqttSubscribeInfo;
@@ -30,6 +32,7 @@ import org.hy.common.xml.log.Logger;
  * @author      ZhengWei(HY)
  * @createDate  2024-02-26
  * @version     v1.0
+ *              v2.0  2025-05-08  添加：MQTT消息格式支持16进制的格式
  */
 public class MQTTClientV5 extends MQTTClientAbstract implements IMQTTClient ,Serializable
 {
@@ -302,19 +305,31 @@ public class MQTTClientV5 extends MQTTClientAbstract implements IMQTTClient ,Ser
      * @author      ZhengWei(HY)
      * @createDate  2024-02-26
      * @version     v1.0
+     *              v2.0  2025-05-08  添加：MQTT消息格式支持16进制的格式
      *
      * @param i_Topic    发布消息的主题
      * @param i_Message  消息内容
+     * @param i_Format   消息内容的格式
      * @param i_QoS      服务质量等级
      * @param i_Retain   保留消息
      * @return           是否成功
      */
     @Override
-    public boolean publish(String i_Topic ,String i_Message ,int i_QoS ,boolean i_Retain)
+    public boolean publish(String i_Topic ,String i_Message ,MessageFormat i_Format ,int i_QoS ,boolean i_Retain)
     {
         try
         {
-            MqttMessage v_Payload = new MqttMessage(i_Message.getBytes());
+            MqttMessage v_Payload = null;
+            
+            if ( MessageFormat.Hex.equals(i_Format) )
+            {
+                v_Payload = new MqttMessage(StringHelp.hexToBytes(i_Message));
+            }
+            else
+            {
+                v_Payload = new MqttMessage(i_Message.getBytes());
+            }
+            
             v_Payload.setQos(i_QoS);
             v_Payload.setRetained(i_Retain);
             this.mqttClient.publish(i_Topic, v_Payload);

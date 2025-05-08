@@ -2,6 +2,7 @@ package org.hy.common.mqtt.client;
 
 import java.util.Map;
 
+import org.hy.common.mqtt.client.enums.MessageFormat;
 import org.hy.common.mqtt.client.subscribe.IMqttMessageListener;
 import org.hy.common.mqtt.client.subscribe.MqttSubscribeInfo;
 
@@ -17,6 +18,7 @@ import org.hy.common.mqtt.client.subscribe.MqttSubscribeInfo;
  * @author      ZhengWei(HY)
  * @createDate  2024-02-21
  * @version     v1.0
+ *              v2.0  2025-05-08  添加：MQTT消息格式支持16进制的格式
  */
 public interface IMQTTClient
 {
@@ -88,6 +90,22 @@ public interface IMQTTClient
      * MQTT发布消息
      * 
      * @author      ZhengWei(HY)
+     * @createDate  2025-05-08
+     * @version     v1.0
+     *
+     * @param i_Topic    发布消息的主题
+     * @param i_Message  消息内容
+     * @param i_Format   消息内容的格式
+     * @return           是否成功
+     */
+    public boolean publish(String i_Topic ,String i_Message ,MessageFormat i_Format);
+    
+    
+    
+    /**
+     * MQTT发布消息
+     * 
+     * @author      ZhengWei(HY)
      * @createDate  2024-02-26
      * @version     v1.0
      *
@@ -97,6 +115,23 @@ public interface IMQTTClient
      * @return           是否成功
      */
     public boolean publish(String i_Topic ,String i_Message ,int i_QoS);
+    
+    
+    
+    /**
+     * MQTT发布消息
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2025-05-08
+     * @version     v1.0
+     *
+     * @param i_Topic    发布消息的主题
+     * @param i_Message  消息内容
+     * @param i_Format   消息内容的格式
+     * @param i_QoS      服务质量等级
+     * @return           是否成功
+     */
+    public boolean publish(String i_Topic ,String i_Message ,MessageFormat i_Format ,int i_QoS);
     
     
     
@@ -114,6 +149,24 @@ public interface IMQTTClient
      * @return           是否成功
      */
     public boolean publish(String i_Topic ,String i_Message ,int i_QoS ,boolean i_Retain);
+    
+    
+    
+    /**
+     * MQTT发布消息
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2024-05-08
+     * @version     v1.0
+     *
+     * @param i_Topic    发布消息的主题
+     * @param i_Message  消息内容
+     * @param i_Format   消息内容的格式
+     * @param i_QoS      服务质量等级
+     * @param i_Retain   保留消息
+     * @return           是否成功
+     */
+    public boolean publish(String i_Topic ,String i_Message ,MessageFormat i_Format ,int i_QoS ,boolean i_Retain);
     
     
     

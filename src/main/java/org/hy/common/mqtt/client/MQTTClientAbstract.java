@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.hy.common.StringHelp;
+import org.hy.common.mqtt.client.enums.MessageFormat;
 import org.hy.common.mqtt.client.subscribe.IMqttMessageListener;
 import org.hy.common.mqtt.client.subscribe.MqttSubscribeInfo;
 
@@ -18,6 +19,7 @@ import org.hy.common.mqtt.client.subscribe.MqttSubscribeInfo;
  * @author      ZhengWei(HY)
  * @createDate  2024-02-21
  * @version     v1.0
+ *              v2.0  2025-05-08  添加：MQTT消息格式支持16进制的格式
  */
 public abstract class MQTTClientAbstract implements IMQTTClient ,Serializable
 {
@@ -137,7 +139,28 @@ public abstract class MQTTClientAbstract implements IMQTTClient ,Serializable
     @Override
     public boolean publish(String i_Topic ,String i_Message)
     {
-        return this.publish(i_Topic ,i_Message ,0 ,true);
+        return this.publish(i_Topic ,i_Message ,MessageFormat.Text ,0 ,true);
+    }
+    
+    
+    
+    /**
+    /**
+     * MQTT发布消息
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2025-05-08
+     * @version     v1.0
+     *
+     * @param i_Topic    发布消息的主题
+     * @param i_Message  消息内容
+     * @param i_Format   消息内容的格式
+     * @return           是否成功
+     */
+    @Override
+    public boolean publish(String i_Topic ,String i_Message ,MessageFormat i_Format)
+    {
+        return this.publish(i_Topic ,i_Message ,i_Format ,0 ,true);
     }
     
     
@@ -157,7 +180,48 @@ public abstract class MQTTClientAbstract implements IMQTTClient ,Serializable
     @Override
     public boolean publish(String i_Topic ,String i_Message ,int i_QoS)
     {
-        return this.publish(i_Topic ,i_Message ,i_QoS ,true);
+        return this.publish(i_Topic ,i_Message ,MessageFormat.Text ,i_QoS ,true);
+    }
+    
+    
+    
+    /**
+     * MQTT发布消息
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2025-05-08
+     * @version     v1.0
+     *
+     * @param i_Topic    发布消息的主题
+     * @param i_Message  消息内容
+     * @param i_Format   消息内容的格式
+     * @param i_QoS      服务质量等级
+     * @return           是否成功
+     */
+    @Override
+    public boolean publish(String i_Topic ,String i_Message ,MessageFormat i_Format ,int i_QoS)
+    {
+        return this.publish(i_Topic ,i_Message ,i_Format ,i_QoS ,true);
+    }
+    
+    
+    
+    /**
+     * MQTT发布消息
+     * 
+     * @author      ZhengWei(HY)
+     * @createDate  2024-02-26
+     * @version     v1.0
+     *
+     * @param i_Topic    发布消息的主题
+     * @param i_Message  消息内容
+     * @param i_QoS      服务质量等级
+     * @param i_Retain   保留消息
+     * @return           是否成功
+     */
+    public boolean publish(String i_Topic ,String i_Message ,int i_QoS ,boolean i_Retain)
+    {
+        return this.publish(i_Topic ,i_Message ,MessageFormat.Text ,i_QoS ,true);
     }
     
     
