@@ -429,7 +429,9 @@ public class MQTTClientV5 extends MQTTClientAbstract implements IMQTTClient ,Ser
             {
                 try
                 {
+                    this.mqttClient.unsubscribe(v_Subscribe.getTopic());
                     this.subscribeHelp(v_Subscribe.getTopic() ,v_Subscribe.getQoS() ,v_Subscribe.getMessageListener());
+                    // super.subscribe(v_Subscribe.getTopic() ,v_Subscribe.getQoS() ,v_Subscribe.getMessageListener());  不用重复添加
                     $Logger.info(this.getBrokerURL() + " topic(" + v_Subscribe.getTopic() + ") is resubscribe ok");
                 }
                 catch (MqttException exce)
